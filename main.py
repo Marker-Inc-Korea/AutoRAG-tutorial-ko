@@ -15,6 +15,8 @@ data_path = os.path.join(root_path, 'data')
 @click.option('--project_dir', type=click.Path(exists=False), default=os.path.join(root_path, 'benchmark'))
 def main(config, qa_data_path, corpus_data_path, project_dir):
     load_dotenv()
+    if os.getenv('OPENAI_API_KEY') is None:
+        raise ValueError('OPENAI_API_KEY environment variable is not set')
     if not os.path.exists(project_dir):
         os.makedirs(project_dir)
     evaluator = Evaluator(qa_data_path, corpus_data_path, project_dir=project_dir)

@@ -1,23 +1,49 @@
-# AutoRAG-template
-Template for a new AutoRAG project
+# AutoRAG 한국어 튜토리얼
+AutoRAG 한국어 튜토리얼을 위한 레포입니다. 
+이 레포에서는 아주 간단한 데이터를 통해서 AutoRAG를 실행해 볼 수 있습니다.
 
 
-# Installation
+# 설치
 
 ```bash
 pip install -r requirements.txt
 ```
 
-# Running the project
+위를 실행하면 자동으로 AutoRAG가 설치됩니다.
 
-1. Download dataset to data folder.
-2. Make `.env` file using `.env.template` file.
-3. Run evaluator with the following command.
+# 프로젝트 구동
+## main.py 이용
+
+1. `.env.template` 파일을 복사하여 `.env` 파일을 만들고 저장합니다. 반드시 본인의 OpenAI api key를 이 파일에 적어주세요.
+2. 아래처럼 main.py를 실행하여 AutoRAG를 구동하세요.
 ```bash
-python main.py --config /path/to/config.yaml
+python main.py --config ./config/tutorial_ko.yaml
 ```
-3. Check the result in the benchmark folder.
+3. benchmark 폴더가 생성되면 거기서 결과를 확인할 수 있습니다.
 
-You can check the example config file at config folder.
+## cli 이용
 
-And you can specify qa data path, corpus data path, and project dir if you want.
+1. `benchmark` 폴더를 만들어 줍니다.
+2. `OPENAI_API_KEY`를 환경변수로 설정합니다. `export OPENAI_API_KEY=sk-xxxx` 
+3. 아래 cli 명령을 실행하여 AutoRAG 최적화를 시작합니다.
+```bash
+autorag evaluate --qa_data_path ./data/qa.parquet --corpus_data_path ./data/corpus.parquet \
+  --config ./config/tutorial_ko.yaml --project_dir ./benchmark
+```
+4. benchmark 폴더가 생성되면 거기서 결과를 확인할 수 있습니다.
+
+# 대시보드 실행
+
+아래 명령을 실행하여 대시보드를 로드합니다. 대시보드를 통해 결과를 아주 쉽게 검토할 수 있습니다.
+
+```bash
+autorag dashboard --trial_dir ./benchmark/0
+```
+
+# streamlit 실행
+streamlit을 실행하여 직접 최적화된 RAG를 사용해 볼 수 있습니다. 
+아래 명령을 실행하세요.
+
+```bash
+autorag run_web --trial_path ./benchmark/0
+```
