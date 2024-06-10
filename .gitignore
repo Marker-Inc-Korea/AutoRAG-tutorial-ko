@@ -162,7 +162,3 @@ cython_debug/
 benchmark/data/
 benchmark/resources/
 
-data/**/*.csv
-data/**/*.parquet
-data/*.csv
-data/*.parquet
