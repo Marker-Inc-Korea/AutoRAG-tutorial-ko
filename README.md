@@ -17,7 +17,7 @@ pip install -r requirements.txt
 1. `.env.template` 파일을 복사하여 `.env` 파일을 만들고 저장합니다. 반드시 본인의 OpenAI api key를 이 파일에 적어주세요.
 2. 아래처럼 main.py를 실행하여 AutoRAG를 구동하세요.
 ```bash
-python main.py --config ./config/tutorial_ko.yaml
+python3 main.py --config ./config/tutorial_ko.yaml
 ```
 3. benchmark 폴더가 생성되면 거기서 결과를 확인할 수 있습니다.
 
@@ -47,3 +47,8 @@ streamlit을 실행하여 직접 최적화된 RAG를 사용해 볼 수 있습니
 ```bash
 autorag run_web --trial_path ./benchmark/0
 ```
+
+### 이런 질문을 해보세요.
+- 야후가 NFL 팬을 위해 도입한 기능은 뭐야?
+- 핀테크 혁신 투자로 기업이 성장한 회사들은 어디가 있어?
+- 부동산 대출 연체가 늘어나면 어떻게 되나요?
