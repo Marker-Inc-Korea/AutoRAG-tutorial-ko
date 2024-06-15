@@ -2,6 +2,11 @@
 AutoRAG 한국어 튜토리얼을 위한 레포입니다. 
 이 레포에서는 아주 간단한 데이터를 통해서 AutoRAG를 실행해 볼 수 있습니다.
 
+# 유튜브 영상
+해당 레포를 이용한 튜토리얼 영상입니다.
+
+[![Video Label](https://i3.ytimg.com/vi/rA5SoBXB8R4/maxresdefault.jpg)](https://youtu.be/rA5SoBXB8R4?si=kbr9hTDUpPQUiiaN)
+
 
 # 설치
 

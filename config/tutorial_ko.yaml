@@ -39,8 +39,8 @@ node_lines:
           - metric_name: rouge
           - metric_name: sem_score
             embedding_model: openai
-          - metric_name: bert_score
-            lang: ko
+#          - metric_name: bert_score
+#            lang: ko
       modules:
         - module_type: fstring
           prompt:
@@ -50,12 +50,12 @@ node_lines:
             단락을 읽고 질문에 답하세요. 답할때 단계별로 천천히 고심하여 답변하세요. 반드시 단락 내용을 기반으로 말하고 거짓을 말하지 마세요. \n 질문: {query} \n 단락: {retrieved_contents} \n 답변 :
     - node_type: generator
       strategy:
-        metrics: # bert_score 및 g_eval 사용 역시 추천합니다. 빠른 실행을 위해 여기서는
+        metrics: # bert_score 및 g_eval 사용 역시 추천합니다. 빠른 실행을 위해 여기서는 제외하고 하겠습니다.
           - metric_name: rouge
           - metric_name: sem_score
             embedding_model: openai
-          - metric_name: bert_score
-            lang: ko
+#          - metric_name: bert_score
+#            lang: ko
       modules:
         - module_type: openai_llm
           llm: gpt-3.5-turbo
