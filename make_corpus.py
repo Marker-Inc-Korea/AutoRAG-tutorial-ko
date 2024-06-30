@@ -1,6 +1,7 @@
 import os
 
 import click
+from autorag.utils import cast_corpus_dataset
 from llama_index.core import SimpleDirectoryReader
 from llama_index.core.node_parser import TokenTextSplitter
 from autorag.data.corpus import llama_text_node_to_parquet
@@ -18,7 +19,9 @@ def main(dir_path: str, save_path: str):
         raise ValueError('The input save_path did not end with .parquet.')
     documents = SimpleDirectoryReader(dir_path, recursive=True).load_data()
     nodes = TokenTextSplitter().get_nodes_from_documents(documents=documents, chunk_size=256, chunk_overlap=64)
-    corpus_df = llama_text_node_to_parquet(nodes, save_path)
+    corpus_df = llama_text_node_to_parquet(nodes)
+    corpus_df = cast_corpus_dataset(corpus_df)
+    corpus_df.to_parquet(save_path)
 
 
 if __name__ == '__main__':
