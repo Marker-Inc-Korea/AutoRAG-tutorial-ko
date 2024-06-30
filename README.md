@@ -16,6 +16,21 @@ pip install -r requirements.txt
 
 위를 실행하면 자동으로 AutoRAG가 설치됩니다.
 
+# RAG 평가 데이터셋 제작 튜토리얼
+
+AutoRAG 사용을 위하여 먼저 RAG 평가 데이터셋을 제작해야 합니다. 아래 과정을 통해 직접 데이터셋을 제작하고 사용해보세요.
+
+1. `raw_docs`에서 원본 문서를 확인합니다. 이 튜토리얼에서는 세 개의 pdf 문서를 이용하고자 합니다.
+2. `make_corpus.py`를 실행합니다. 
+```bash
+python make_corpus.py 
+```
+3. `data` 폴더에 생성된 `corpus_new.parquet`을 확인할 수 있습니다. `pandas`로 직접 살펴보면 더욱 좋습니다.
+4. `OPENAI_API_KEY`를 환경변수로 설정합니다. `export OPENAI_API_KEY=sk-xxxx` 
+5. `make_qa.py`를 실행하여 질의 응답 데이터셋을 제작합니다. 
+6. `qa_new.parquet` 파일을 확인합니다. 직접 데이터셋을 검토해보고, 별로인 질문을 수정 혹은 삭제합니다.
+7. 더 좋은 데이터셋 생성을 위해 `make_qa.py`의 프롬프트를 수정합니다.
+
 # 프로젝트 구동
 ## main.py 이용
 
@@ -35,6 +50,8 @@ python3 main.py --config ./config/tutorial_ko.yaml
 autorag evaluate --qa_data_path ./data/qa.parquet --corpus_data_path ./data/corpus.parquet \
   --config ./config/tutorial_ko.yaml --project_dir ./benchmark
 ```
+위 데이터셋 튜토리얼에서 제작한 데이터셋으로 실행하려면, 
+`corpus.parquet`을 `corpus_new.parquet`, `qa.parquet`을 `qa_new.parquet`으로 바꿔주세요.
 4. benchmark 폴더가 생성되면 거기서 결과를 확인할 수 있습니다.
 
 # 대시보드 실행
