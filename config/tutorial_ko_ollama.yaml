@@ -1,0 +1,48 @@
+node_lines:
+- node_line_name: retrieve_node_line
+  nodes:
+    - node_type: retrieval
+      strategy:
+        metrics: [retrieval_f1, retrieval_ndcg, retrieval_map]
+      top_k: 3
+      modules:
+        - module_type: bm25
+          bm25_tokenizer: ko_kiwi
+        - module_type: vectordb
+          embedding_model: [ huggingface_baai_bge_small, huggingface_all_mpnet_base_v2 ]
+        - module_type: hybrid_rrf
+        - module_type: hybrid_cc
+          normalize_method: [ mm, tmm ]
+- node_line_name: post_retrieve_node_line
+  nodes:
+    - node_type: prompt_maker
+      strategy:
+        metrics:
+          - metric_name: rouge
+          - metric_name: bert_score
+            lang: ko
+        generator_modules:
+          - module_type: llama_index_llm
+            llm: ollama
+            model: llama3
+            request_timeout: 300.0
+      modules:
+        - module_type: fstring
+          prompt:
+          - | 
+            단락을 읽고 질문에 답하세요. \n 질문 : {query} \n 단락: {retrieved_contents} \n 답변 :
+          - |
+            단락을 읽고 질문에 답하세요. 답할때 단계별로 천천히 고심하여 답변하세요. 반드시 단락 내용을 기반으로 말하고 거짓을 말하지 마세요. \n 질문: {query} \n 단락: {retrieved_contents} \n 답변 :
+    - node_type: generator
+      strategy:
+        metrics: # bert_score 및 g_eval 사용 역시 추천합니다. 빠른 실행을 위해 여기서는 제외하고 하겠습니다.
+          - metric_name: rouge
+          - metric_name: bert_score
+            lang: ko
+      modules:
+        - module_type: llama_index_llm
+          llm: ollama
+          model: llama3
+          request_timeout: 300.0
+          temperature: [ 0.1, 1.0 ]
+          batch: 1
