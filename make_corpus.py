@@ -4,7 +4,7 @@ import click
 from autorag.utils import cast_corpus_dataset
 from llama_index.core import SimpleDirectoryReader
 from llama_index.core.node_parser import TokenTextSplitter
-from autorag.data.corpus import llama_text_node_to_parquet
+from autorag.data.legacy.corpus import llama_text_node_to_parquet
 
 root_dir = os.path.dirname(os.path.realpath(__file__))
 

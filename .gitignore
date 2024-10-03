@@ -163,3 +163,4 @@ benchmark/data/
 benchmark/resources/
 
 parsed_raw/
+chunked_corpus/
