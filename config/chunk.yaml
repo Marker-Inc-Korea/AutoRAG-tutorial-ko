@@ -17,7 +17,3 @@ modules:
   - module_type: langchain_chunk
     chunk_method: recursivecharacter
     separators: [ " ", "\n" ]
-  - module_type: langchain_chunk
-    chunk_method: konlpy
-    chunk_size: 512
-    chunk_overlap: 48
