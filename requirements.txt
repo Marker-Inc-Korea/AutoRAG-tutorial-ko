@@ -1,4 +1,6 @@
-AutoRAG[parse, ko]>=0.3.2
+AutoRAG[parse]>=0.3.2
+kiwipiepy
+konlpy
 click
 python-dotenv
 spacy
