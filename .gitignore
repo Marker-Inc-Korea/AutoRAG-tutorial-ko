@@ -162,3 +162,4 @@ cython_debug/
 benchmark/data/
 benchmark/resources/
 
+parsed_raw/
